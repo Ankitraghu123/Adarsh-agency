@@ -181,6 +181,9 @@ const PaymentVoucherForm = () => {
       </p>
       <p className='text-center mb-4'>Period : 01-04-2025 - 31-03-2026</p>
 
+<div className="line"></div>
+{/*
+
       <Form>
         <Row className='mb-4'>
           <Col md={6}>
@@ -195,7 +198,7 @@ const PaymentVoucherForm = () => {
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Voucher No.</Form.Label>
+              <Form.Label>Voucher Noss.</Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Enter Voucher No.'
@@ -241,7 +244,87 @@ const PaymentVoucherForm = () => {
             </Row>
           </Col>
         </Row>
-      </Form>
+      </Form> */}
+
+      <Form>
+  <Row className="mb-4">
+    {/* Left Side */}
+    <Col md={6} className="mt-4">
+      {/* Voucher Type */}
+      <Form.Group as={Row} className="mb-3 align-items-center">
+        <Form.Label column sm={4} className="col-form-label">
+          Voucher Type
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="text"
+            defaultValue="Payment"
+            ref={(el) => (formRefs.current[0] = el)}
+            onKeyDown={(e) => handleKeyDown(e, 0)}
+          />
+        </Col>
+      </Form.Group>
+
+      {/* Voucher No. */}
+      <Form.Group as={Row} className="mb-3 align-items-center">
+        <Form.Label column sm={4} className="col-form-label">
+          Voucher No.
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="text"
+            placeholder="Enter Voucher No."
+            ref={(el) => (formRefs.current[1] = el)}
+            onKeyDown={(e) => handleKeyDown(e, 1)}
+          />
+        </Col>
+      </Form.Group>
+    </Col>
+
+    {/* Right Side */}
+    <Col md={6} className="mt-4">
+      {/* Date */}
+      <Form.Group as={Row} className="mb-3 align-items-center">
+        <Form.Label column sm={4} className="col-form-label">
+          Date{" "}
+          <span style={{ fontSize: "12px", color: "red" }}>
+            (Press Enter to trigger a function)
+          </span>
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="text"
+            name="date"
+            placeholder="DD/MM/YYYY"
+            value={dateValue}
+            onChange={handleDateChange}
+            ref={(el) => (formRefs.current[2] = el)}
+            onKeyDown={(e) => handleKeyDown(e, 2)}
+          />
+        </Col>
+      </Form.Group>
+
+      {/* Day */}
+      <Form.Group as={Row} className="mb-3 align-items-center">
+        <Form.Label column sm={4} className="col-form-label">
+          Day
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="text"
+            value={dayValue}
+            readOnly
+            ref={(el) => (formRefs.current[3] = el)}
+            onKeyDown={(e) => handleKeyDown(e, 3)}
+          />
+        </Col>
+      </Form.Group>
+    </Col>
+  </Row>
+
+  <hr />
+</Form>
+
 
       {/*  Modal for Vendor Selection */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
@@ -304,24 +387,25 @@ const PaymentVoucherForm = () => {
       {/*  Selected Vendor Info + Debit Input */}
       {selectedVendor && (
         <>
-          <hr />
-          <h5>Vendor Details</h5>
-          <p>
-            <strong>Name:</strong> {selectedVendor?.name}
+         <div className="d-flex align-items-center gap-5 mt-4 w-full">
+
+
+          <p className="mb-0">
+            <strong></strong> {selectedVendor?.name}
           </p>
-          <p>
-            <strong>City:</strong> {selectedVendor?.city}
+          <p className="mb-0">
+            <strong></strong> {selectedVendor?.city}
           </p>
-          <p>
+          <p className="mb-0">
             <strong>Total Balance:</strong> ₹
             {balance?.balance?.toFixed(2) || "0.00"}
           </p>
 
-          <Form.Group as={Row} className='mb-3' controlId='formDebit'>
-            <Form.Label column sm={2}>
+          <Form.Group  className=' d-flex align-items-center ' controlId='formDebit'>
+            <Form.Label column >
               Debit Amount
             </Form.Label>
-            <Col sm={4}>
+            <Col >
               <Form.Control
                 type='number'
                 placeholder='Enter amount'
@@ -332,6 +416,8 @@ const PaymentVoucherForm = () => {
               />
             </Col>
           </Form.Group>
+          </div>
+           <div className="line mt-5"></div>
         </>
       )}
 

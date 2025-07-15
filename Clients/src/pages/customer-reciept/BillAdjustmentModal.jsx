@@ -8,7 +8,7 @@ import React, {
 import { Modal, Form, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Config/axios";
-import Header from "./header";
+import Header from "./Header";
 
 const BillAdjustmentModal = forwardRef(
   (
